@@ -42,12 +42,21 @@ export class TankService {
 
     deleteTank(id): Promise<Object> {
        // code here
-       return;
+           console.log(`from tank.service delete method......`);
+        return this.http.delete(`${this.apiUrl}/tank/id/${id}`).toPromise().then((resp) => {
+            let status = resp.json();
+            console.log('tank', status);
+            return status;
+    });
     }
 
     updateTank(id, tank): Promise<Object> {
         // code here
-        return;
+           return this.http.put(`${this.apiUrl}/tank/id/${id}`, tank).toPromise().then((resp) => {
+            let tank = resp.json();
+            console.log('tank', tank);
+            return tank;
+        });
     }
     
 }
